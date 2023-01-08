@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 
@@ -17,7 +18,7 @@ public class Tic_Tac_toe {
 //	 * The main is for game start so the player 1 can make the first 
 //   *  move then check availability and the winner then  it is player two turn
 //	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		char[][] arr = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
 
@@ -31,7 +32,7 @@ public class Tic_Tac_toe {
 		// The user went to resume the game
 		boolean gameStarted = GameEnded("data/saveState.csv");
 	        if (!gameStarted) {
-	        	LastGame("data/saveState.csv",  arr, 1, 'X', 'O');
+	            LastGame(arr,"data/saveState.txt");
 	        }
 		
 		System.out.println("Wellcome to Tic-Tac-Toe Program");
@@ -54,7 +55,7 @@ public class Tic_Tac_toe {
 			    // if the user enter E to exit the game the state will be stored in a file
 			    //so the player will be able to resum the game
 			    while (exit=="E") {
-			    	 saveState("data/saveState.csv",arr, 1, 'X', 'O');
+			    	 saveState(arr,"data/saveState.txt");
 				}
 			   
 			    
@@ -208,7 +209,7 @@ public class Tic_Tac_toe {
 			    // if the user enter E to exit the game the state will be stored in a file
 			    //so the player will be able to resum the game
 			    while (exit=="E") {
-			    	 saveState("data/saveState.csv",arr, 1, 'X', 'O');
+			    	 saveState(arr,"data/saveState.txt");
 				}
 			   
 				System.out.println("-------------------");
@@ -401,32 +402,27 @@ public class Tic_Tac_toe {
 
 	}
 	
+	
 	/**
 	 * this method to save the player input so they can then resume the game.
+	 * @param arr : he game board
 	 * @param filepath
-	 * @param arr
-	 * @param player : the player 1 or player 2
-	 * @param Symbol1 : the symbol of player 1
-	 * @param Sympol2 : the symbol of player 2
+	 * @throws IOException
 	 */
-	public static void saveState(String filepath, char[][] arr, int player, char Symbol1, char Sympol2) {
-        // TODO Auto-generated method stub
-        try {
-        	
-            FileWriter gameState = new FileWriter(filepath);
-            gameState.write(player + "\n");
-            gameState.write(Symbol1 + "\n");
-            gameState.write(Sympol2 + "\n");
-            for(int row = 0; row < arr.length; ++row) {
-                for(int col = 0; col < arr[0].length; ++col) {
-                    gameState.write(arr[row][col] + "\n");
-                }
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+	
+	public static void saveState(char[][] arr,String filepath ) throws IOException {
+		PrintWriter writer = new PrintWriter(filepath);
+		for (int row = 0; row < arr.length; row++) {
+			for (int col = 0; col < arr.length; col++) {
+				writer.write(arr[row][col]);
+			}
+			if (row < 2)
+				writer.write("\n");
+			else
+				writer.write("\n");
+		}
+		writer.close();
+	}
 	
 	/**
 	 * this method to chech the gmae state if the game endes.
@@ -441,43 +437,32 @@ public class Tic_Tac_toe {
             return true;
         } else {
             return false;
-        }
-        
-        
-        
+        }  
         
     }
 	
 	
 	/**
 	 * method to load the last game so the player can resum the game.
-	 * @param filepath
 	 * @param arr : the game board
-	 * @param player : the player 1 or 2
-	 * @param Symbol1 : the symbol of player 1
-	 * @param Symbol2 : the symbol of player 2
+	 * @param filepath
+	 * @throws FileNotFoundException
 	 */
-	
-	private static void LastGame(String filepath, char[][] arr, int player, char Symbol1, char Symbol2) {
-        // TODO Auto-generated method stub
-        File gameState = new File(filepath);
-        
-        try {
-            Scanner stateScanner = new Scanner(gameState);
-            player = Integer.parseInt(stateScanner.nextLine());
-            Symbol1 = stateScanner.nextLine().charAt(0);
-            Symbol2 = stateScanner.nextLine().charAt(0);
-            
-            for(int row = 0; row < arr.length; ++row) {
-                for(int col = 0; col < arr[0].length; ++col) {
-                    arr[row][col] = stateScanner.nextLine().charAt(0);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+	public static void LastGame(char[][] arr, String filepath) throws FileNotFoundException {
+		Scanner textFile;
+		try {
+			textFile = new Scanner(new File(filepath));
+			while (textFile.hasNextLine()) {
+				for (int i = 0; i < arr.length; i++) {
+					String line = textFile.nextLine(); // read line by line and store it in array
+					arr[i] = line.toCharArray();
+				}
+			}
+			textFile.close();
+		} catch (FileNotFoundException e) {
+			PrintWriter writer = new PrintWriter(filepath);
+		}
+	}
 	
 	
 	
