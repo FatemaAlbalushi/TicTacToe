@@ -12,17 +12,16 @@ import java.util.concurrent.CountDownLatch;
 
 public class Tic_Tac_toe {
 
-<<<<<<< HEAD
-	//	/**
-	//	 * The main is for game start so the player 1 can make the first 
-	//   *  move then check availability and the winner then  it is player two turn
-	//	 */
-=======
+	// /**
+	// * The main is for game start so the player 1 can make the first
+	// * move then check availability and the winner then it is player two turn
+	// */
+
 //	/**
 //	 * The main is for game start so the player 1 can make the first 
 //   *  move then check availability and the winner then  it is player two turn
 //	 */
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+
 	public static void main(String[] args) throws IOException {
 
 		char[][] arr = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
@@ -36,17 +35,16 @@ public class Tic_Tac_toe {
 
 		// The user went to resume the game
 		boolean gameStarted = GameEnded("data/saveState.csv");
-<<<<<<< HEAD
+
 		if (!gameStarted) {
 			LastGame(arr, "data/saveState.txt");
 		}
 
-=======
 	        if (!gameStarted) {
 	            LastGame(arr,"data/saveState.txt");
 	        }
 		
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+
 		System.out.println("Wellcome to Tic-Tac-Toe Program");
 		// Starting of the Game
 		while (gamestart) {
@@ -63,19 +61,19 @@ public class Tic_Tac_toe {
 			if (player1) {
 				System.out.println("player 1 Make a move, Enter a position: ");
 				System.out.println("Enter E if you went to Exit the Game or N if not: ");
-<<<<<<< HEAD
+
 				String exit = input.next();
 				// if the user enter E to exit the game the state will be stored in a file
 				// so the player will be able to resum the game
 				while (exit == "E") {
 					saveState(arr, "data/saveState.txt");
-=======
-			    String exit = input.next();
+
+			   // String exit = input.next();
 			    // if the user enter E to exit the game the state will be stored in a file
 			    //so the player will be able to resum the game
 			    while (exit=="E") {
 			    	 saveState(arr,"data/saveState.txt");
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+
 				}
 
 				System.out.println("-------------------");
@@ -224,19 +222,19 @@ public class Tic_Tac_toe {
 			else {
 				System.out.println("player 2 Make a move, Enter a position: ");
 				System.out.println("Enter E if you went to Exit the Game or N if not: ");
-<<<<<<< HEAD
+
 				String exit = input.next();
 				// if the user enter E to exit the game the state will be stored in a file
 				// so the player will be able to resum the game
 				while (exit == "E") {
 					saveState(arr, "data/saveState.txt");
-=======
-			    String exit= input.next();
+
+			  
 			    // if the user enter E to exit the game the state will be stored in a file
 			    //so the player will be able to resum the game
 			    while (exit=="E") {
 			    	 saveState(arr,"data/saveState.txt");
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+
 				}
 
 				System.out.println("-------------------");
@@ -383,6 +381,7 @@ public class Tic_Tac_toe {
 			}
 
 		}
+			}
 
 	}
 
@@ -431,7 +430,6 @@ public class Tic_Tac_toe {
 		}
 		return 0;
 
-<<<<<<< HEAD
 	} // end of the Iswin method
 
 	/**
@@ -442,20 +440,16 @@ public class Tic_Tac_toe {
 	 * @throws IOException
 	 */
 
-	public static void saveState(char[][] arr, String filepath) throws IOException {
-=======
-	}
-	
-	
 	/**
 	 * this method to save the player input so they can then resume the game.
-	 * @param arr : he game board
+	 * 
+	 * @param arr      : he game board
 	 * @param filepath
 	 * @throws IOException
 	 */
-	
-	public static void saveState(char[][] arr,String filepath ) throws IOException {
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+
+	public static void saveState(char[][] arr, String filepath) throws IOException {
+
 		PrintWriter writer = new PrintWriter(filepath);
 		for (int row = 0; row < arr.length; row++) {
 			for (int col = 0; col < arr.length; col++) {
@@ -467,13 +461,9 @@ public class Tic_Tac_toe {
 				writer.write("\n");
 		}
 		writer.close();
-<<<<<<< HEAD
+
 	} // end of the saveState method
 
-=======
-	}
-	
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
 	/**
 	 * this method to chech the gmae state if the game endes.
 	 * 
@@ -481,7 +471,7 @@ public class Tic_Tac_toe {
 	 * @return
 	 */
 	private static boolean GameEnded(String filepath) {
-<<<<<<< HEAD
+
 		// TODO Auto-generated method stub
 		File gameState = new File(filepath);
 
@@ -496,24 +486,19 @@ public class Tic_Tac_toe {
 	/**
 	 * method to load the last game so the player can resum the game.
 	 * 
-	 * @param arr      : the game board
-=======
-        // TODO Auto-generated method stub
-        File gameState = new File(filepath);
-        
-        if (gameState.exists()) {
-            return true;
-        } else {
-            return false;
-        }  
-        
-    }
-	
-	
-	/**
-	 * method to load the last game so the player can resum the game.
-	 * @param arr : the game board
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
+	 * @param arr      : the game board ======= // TODO Auto-generated method stub
+	 *                 File gameState = new File(filepath);
+	 * 
+	 *                 if (gameState.exists()) { return true; } else { return false;
+	 *                 }
+	 * 
+	 *                 }
+	 * 
+	 * 
+	 *                 /** method to load the last game so the player can resum the
+	 *                 game.
+	 * @param arr      : the game board >>>>>>>
+	 *                 29aaac8670bf5219715fbb974651b6fd474eeae7
 	 * @param filepath
 	 * @throws FileNotFoundException
 	 */
@@ -531,13 +516,9 @@ public class Tic_Tac_toe {
 		} catch (FileNotFoundException e) {
 			PrintWriter writer = new PrintWriter(filepath);
 		}
-<<<<<<< HEAD
+
 	} // end of the LastGame method
-=======
-	}
-	
-	
-	
->>>>>>> 29aaac8670bf5219715fbb974651b6fd474eeae7
 
 }
+
+
